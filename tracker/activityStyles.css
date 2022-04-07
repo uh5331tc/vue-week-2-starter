@@ -2,3 +2,30 @@
     max-height: 250px;
     overflow: scroll;
 }
+
+body {
+    align-content: center;
+    background-color: lemonchiffon;  /*change webpage background color*/
+    font-family: Georgia, 'Times New Roman', Times, serif; /*request fonts in prefered order for the browser to read*/ 
+}
+
+#buttons {
+    margin: auto;
+    width: 50%;
+    border: 3px solid rgb(133, 245, 133);
+    padding: 10px;
+}
+
+h2 { 
+    color: pink;  /*font color*/
+    font-size: 48px; /*font size*/
+    text-align: center; /*Center the text*/
+    font-family: Arial, Helvetica, sans-serif; /*font style in prefered order*/
+}
+
+#form-label {
+    color: pink;  /*font color*/
+    font-size: 48px; /*font size*/
+    text-align: center; /*Center the text*/
+    font-family: Arial, Helvetica, sans-serif; /*font style in prefered order*/
+}
