@@ -25,7 +25,7 @@
                 <div class="alert alert-danger" v-if="errors.lengh > 0">
                     <!-- I show a list of validation errors from form -->
                     <ul>
-                        <li v-for="erorr in errors"> {{ error }} </li>
+                        <li v-for="error in errors"> {{ error }} </li>
                     </ul>
                 </div>
 
@@ -63,20 +63,29 @@
                 </div>
 
                 <div class="form-check-inline">  <!-- this is radio button 1 -->
-                    <!-- I v-model media -->
-                    <input id="media1" class="form-check-input" type="radio" value="Traditional" v-model="media">
+                    <!-- I v-model medium -->
+                    <input id="media1" class="form-check-input" type="radio" value="Traditional" v-model="medium">
                     <label class="form-check-label" for="media1">  Traditional  </label>
                 </div>
 
                 <div class="form-check-inline"> <!--this is ratio  button 2 -->
-                    <!--  v-model media -->
-                    <input id="media2" class="form-check-input" type="radio" value="Digital" v-model="media">
+                    <!--  v-model medium -->
+                    <input id="media2" class="form-check-input" type="radio" value="Digital" v-model="medium">
                     <label class="form-check-label" for="media2" > Digital  </label>
                 </div>
             <br>
-                <div class="form-check-inline"> <!-- this is the completed button-->
-                    <input type="checkbox" id="Completed" name="Completed"> 
+                <div class="form-group"> <!-- this is the completed button-->
+                    <input type="checkbox" id="completed" name="completed" v-model="completed"> <!--v-model="completed" I can not figure this out--> 
                     <label for="checkbox"> Completed </label>
+                </div>
+
+
+            
+                <div class="form-group"> <!--Add user notes section -->
+                    <label for="notes"> Enter Notes Below </label>
+
+                    <input id="notes" class="form-control" type="text" v-model="notes">
+
                 </div>
 
                 <div>
@@ -92,7 +101,7 @@
 
             <div class="card-body">
 
-                <h3> {{ totalRecordsMessage }}<!-- TODO Display number of records --> records</h3>
+                <h3> {{ totalRecordsMessage }}<!-- TODO Display number of records --> </h3>
 
                 <div id="records">
                     <table class="table table-hover" >
@@ -101,13 +110,17 @@
                             <th>How many hours?</th>
                             <th>Type</th>
                             <th>Media</th>
+                            <th>Completed?</th>
+                            <th>Notes</th>
                         </tr>
-                        <!-- TODO use v-for to create one table row for each activity record -->
-                        <tr v-for="record in activityRecords" v-bind:class="">
+                        <!-- I use v-for to create one table row for each activity record -->
+                        <tr v-for="record in activityRecords" v-bind:class="record.type">
                             <td> {{ shortDate(record.date) }} </td>
                             <td> {{ record.hours }}</td>
-                            <td v-bind:class=""> {{ record.type }}</td>
+                            <td> {{ record.type }}</td>
                             <td> {{ record.medium }}</td>
+                            <td> {{ record.completed }}</td>
+                            <td> {{ record.notes }}</td>
 
                             </tr>
                         </tr>
@@ -123,8 +136,9 @@
             <div class="card-body">
 
                 <!-- TODO add computed property to calculate the total hours -->
+                <h3>
                 <p>You have practiced a total of {{ totalHours }} hours</p>
-
+                </h3>
                 <!-- Challenge question! Display a list of the total hours for each type.  -->
           
             </div>
@@ -146,9 +160,10 @@
 
                     activityRecords: [],
 
-
                     types: ['Sketching', 'Drawing', 'Painting'], // used with the select-option choices
 
+                    completed: 'checkbox',
+                    notes: '',
                     errors: []
                 }
             },
@@ -166,11 +181,11 @@
                          this.errors.push('The number or hours must be greater than 0 and <= 24')
                     }
 
-                    if (this.type) {
+                    if (!this.type) {
                         this.errors.push('Select a type')
                     }
 
-                    if (this.medium) {
+                    if (!this.medium) {
                         this.errors.push('Select a medium')
                     }
 
@@ -205,7 +220,7 @@
                     if (numberOfRecords == 1 ) {
                         return '1 record'
                     } else {
-                        return numberOfRecords + 'records'
+                        return numberOfRecords + ' records'
                     }
                 },
                 totalHours() {
@@ -218,7 +233,7 @@
             }
 
         })
-    //   TODO create new Vue app here
+    //   I create new Vue app here
         app.mount('#app')
     </script>
 

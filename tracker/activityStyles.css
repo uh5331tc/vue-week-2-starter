@@ -29,3 +29,33 @@ h2 {
     text-align: center; /*Center the text*/
     font-family: Arial, Helvetica, sans-serif; /*font style in prefered order*/
 }
+
+table, tr, th, td {    /*boarder for table*/
+    border: 3px rgb(234, 118, 245) solid;
+    border-collapse:inherit;
+    margin-left: auto;  /*center table on left margin*/
+    margin-right: auto; /*center table on right margin*/
+}
+
+
+th {    /*th = TABLE HEADER*/
+    width: 200px;
+    background-color: rgb(232, 189, 252);
+}
+
+td {
+    text-align: center;
+}
+
+tr:nth-child(even) {  /*table row data  SELECT EVEN ONLY*/
+    background-color: lightsteelblue;
+}
+
+tr:nth-child(odd){  /*table row data  SELECT ODD ONLY*/
+    background-color: rgb(231, 231, 116);
+} 
+
+h3 {
+    color: rgb(93, 243, 155);
+    text-align: center;
+}
